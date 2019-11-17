@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ActionsPanel from 'components/ActionsPanel'
-import Avatar from 'shared/Avatar'
-import Paper from 'shared/Paper'
+import { ActionsPanel } from 'components'
+import { Avatar, Paper } from 'shared'
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState([

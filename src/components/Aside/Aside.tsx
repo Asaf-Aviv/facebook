@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Paper from 'shared/Paper'
-import Avatar from 'shared/Avatar'
+import { BaseButton, Avatar, Paper } from 'shared'
 import { ReactComponent as PlusIcon } from 'assets/icons/plus.svg'
 import { ReactComponent as DotsIcon } from 'assets/icons/dots.svg'
 import GoogleEvent from 'assets/images/google-event.jpg'
-import BaseButton from 'shared/BaseButton'
 
 const Aside: React.FC = () => (
   <AsideContainer>
@@ -158,6 +156,9 @@ const AddStoryButton = styled(BaseButton)`
 const FlexSpaceBetween = styled.div`
   display: flex;
   justify-content: space-between;
+  g {
+    opacity: 1;
+  }
 `
 
 const StyledLink = styled.span`

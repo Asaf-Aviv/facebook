@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import TextareaAutosize from 'react-textarea-autosize'
-import Avatar from 'shared/Avatar'
-import Paper from 'shared/Paper'
+import { Avatar, Paper } from 'shared'
 
 const CreatePost: React.FC = () => {
   const [postBody, setPostBody] = useState('')
@@ -38,6 +37,9 @@ const Input = styled(TextareaAutosize)`
   margin-left: 1rem;
   border: none;
   outline: none;
+  padding: 1rem 1rem 1rem 0;
+  line-height: 1.5;
+  min-height: 50px;
   align-self: center;
   resize: none;
   &::placeholder {

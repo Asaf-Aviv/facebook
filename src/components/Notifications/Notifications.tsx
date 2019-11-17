@@ -1,8 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import Avatar from 'shared/Avatar'
-import Typography from 'shared/Typography'
-import PopOverHeader from 'shared/PopOverHeader'
+import { Avatar, Typography, PopOverHeader } from 'shared'
 
 const Notifications: React.FC = () => (
   <NotificationsContainer>

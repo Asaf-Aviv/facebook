@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import LabelLink from 'shared/LabelLink'
-import Badge from 'shared/Badge'
+import { LabelLink, Badge } from 'shared'
 
 interface SideBarLink {
   to: string

@@ -2,20 +2,21 @@ import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter as Router } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
-import SideBar from 'components/SideBar/SideBar'
+import {
+  SideBar,
+  TabsPanel,
+  CreatePost,
+  Posts,
+  Aside,
+  ToolBar,
+} from 'components'
 import GlobalStyle from 'styles/GlobalStyle'
 import theme from 'styles/theme'
-import TabsPanel from 'components/TabsPanel/TabsPanel'
-import CreatePost from 'components/CreatePost/CreatePost'
-import Posts from 'components/Posts/Posts'
-import Aside from 'components/Aside'
-import BottomToolBar from 'components/BottomToolBar/BottomToolBar'
-import 'simplebar/dist/simplebar.min.css'
 
 const Facebook: React.FC = () => (
   <Router>
     <ThemeProvider theme={theme}>
-      <div>
+      <Content>
         <GlobalStyle />
         <SideBar />
         <Router />
@@ -29,8 +30,8 @@ const Facebook: React.FC = () => (
             <Aside />
           </Content>
         </StyledDiv>
-        <BottomToolBar />
-      </div>
+        <ToolBar />
+      </Content>
     </ThemeProvider>
   </Router>
 )

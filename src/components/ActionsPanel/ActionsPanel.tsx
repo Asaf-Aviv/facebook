@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg'
 import { ReactComponent as LikeIcon } from 'assets/icons/like.svg'
 import { ReactComponent as CommentIcon } from 'assets/icons/comment.svg'
-import BaseButton from 'shared/BaseButton'
+import { BaseButton } from 'shared'
 
 const ActionsPanel: React.FC = () => (
   <>

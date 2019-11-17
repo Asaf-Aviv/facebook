@@ -7,7 +7,7 @@ import { ReactComponent as UserIcon } from 'assets/icons/user.svg'
 import { ReactComponent as UsersIcon } from 'assets/icons/users.svg'
 import { ReactComponent as EventsIcon } from 'assets/icons/events.svg'
 import { ReactComponent as PagesIcon } from 'assets/icons/pages.svg'
-import SideBarLink from 'components/SideBarLink'
+import { SideBarLink } from 'components'
 
 const SideBar: React.FC = () => (
   <SideBarContainer>

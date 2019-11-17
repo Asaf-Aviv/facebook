@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import BaseButton from 'shared/BaseButton'
-import Badge from 'shared/Badge'
+import { IconButton, Badge } from 'shared'
 
 interface ToolBarButton {
   active: boolean
@@ -32,24 +31,21 @@ const ButtonContainer = styled.div`
   width: 70px;
 `
 
-const StyledToolBarButton = styled(BaseButton)<{ active: boolean }>`
+const StyledToolBarButton = styled(IconButton)<{ active: boolean }>`
   ${(props) => {
     const { active, theme } = props
     const { dark } = theme.colors.bg
 
     return css`
-      height: 100%;
-      width: 100%;
-      ${active ? css`
+      ${active && css`
         background: ${dark};
+        &:hover {
+          background: ${dark};
+        }
         g {
           opacity: 1;
         }
-      ` : css`
-      &:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-    `}
+      `}
     `
   }}
 `
