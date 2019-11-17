@@ -49,13 +49,17 @@ module.exports = {
         }
       }
     ],
+    'consistent-return': 'off',
     'react/jsx-filename-extension': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'off',
     'arrow-parens': [2, "as-needed", { "requireForBlockBody": true }],
-    semi: 'off'
+    "object-curly-newline": ["error", {
+      "ImportDeclaration": { "multiline": true, "minProperties": 6 }
+    }],
+    'semi': 'off'
   },
   settings: {
     'import/resolver': {
