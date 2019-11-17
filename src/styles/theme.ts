@@ -20,8 +20,8 @@ const theme: DefaultTheme = {
     sm: '0.875rem',
     normal: '1rem',
     md: '1.125rem',
-    big: '1.25rem',
-    bigger: '1.375',
+    lg: '1.25rem',
+    xl: '1.375rem',
     huge: '1.5rem',
   },
   shadows: [

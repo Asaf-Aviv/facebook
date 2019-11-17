@@ -36,6 +36,14 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: flex-start;
   }
+
+  .simplebar-content-wrapper {
+    overscroll-behavior: contain;
+  }
+
+  .simplebar-scrollbar:before {
+    background: #031335;
+  }
 `
 
 export default GlobalStyle

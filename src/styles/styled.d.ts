@@ -17,5 +17,5 @@ declare module 'styled-components' {
 
   export type BGColor = 'primary' | 'secondary' | 'dark'
   export type TextColor = 'primary' | 'secondary' | 'white' | 'lightBlue'
-  export type FontSize = 'xs' | 'sm' | 'normal' | 'md' | 'big' | 'bigger' | 'huge'
+  export type FontSize = 'xs' | 'sm' | 'normal' | 'md' | 'lg' | 'xl' | 'huge'
 }
