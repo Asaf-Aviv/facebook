@@ -8,7 +8,6 @@ const ToolBarPopOver = styled.div<{ activeTab: number }>`
 
     return css`
       position: absolute;
-      left: 0;
       overflow: hidden;
       background: ${colors.bg.dark};
       border-top-left-radius: ${borderRadius};
