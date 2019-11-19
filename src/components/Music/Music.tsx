@@ -1,67 +1,26 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { Typography, BaseButton, PopOverHeader, FlexCol } from 'shared'
-import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 import SongImage from 'assets/images/nico.png'
 import SimpleBar from 'simplebar-react'
-import { Track } from 'components'
-import lyrics from './lyrics'
+import { Track, SearchInput } from 'components'
+import { Track as ITrack } from 'data/tracks'
 
-const MusicSearchInput: React.FC = () => {
-  const [value, setValue] = useState('')
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }
-
-  return (
-    <MusicSearchInputContainer>
-      <StyledSearchIcon />
-      <Input
-        value={value}
-        onChange={handleOnChange}
-        placeholder="Search for song, artist or an album"
-      />
-    </MusicSearchInputContainer>
-  )
+interface ActiveTrack {
+  id: number
+  isPlaying: boolean
+  duration: number
+  currentDuration: number
 }
 
-const MusicSearchInputContainer = styled.div`
-  position: relative;
-  display: flex;
-  margin: 1.5rem 0 0.5rem;
-  align-items: center;
-`
+interface Music {
+  activeTrack: ActiveTrack
+  tracks: ITrack[]
+}
 
-const StyledSearchIcon = styled(SearchIcon)`
-  position: absolute;
-  left: 0.75rem;
-  height: 1.25rem;
-`
-
-const Input = styled.input`
-  flex: 1;
-  background: transparent;
-  color: #fff;
-  padding-left: 2.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 30px;
-  height: 3rem;
-  outline: none;
-  &::placeholder {
-    color: #fff;
-    opacity: 0.5;
-  }
-`
-
-const Music: React.FC = () => {
+const Music: React.FC<Music> = ({ tracks, activeTrack }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
-  const [activeTrack, setActiveTrack] = useState<number | null>(0)
-
-  const isActive = (index: number) => index === activeTrack
-
   const onTabClick = (tabIndex: number) => () => setActiveTabIndex(tabIndex)
-
   const isTabActive = (tabIndex: number) => tabIndex === activeTabIndex
 
   return (
@@ -88,27 +47,25 @@ const Music: React.FC = () => {
                 Radio
               </MusicPanelButton>
               <MusicPanelButton onClick={onTabClick(3)} active={isTabActive(3)}>
-                Radio
-              </MusicPanelButton>
-              <MusicPanelButton onClick={onTabClick(4)} active={isTabActive(4)}>
                 Playlists
               </MusicPanelButton>
-              <MusicPanelButton onClick={onTabClick(5)} active={isTabActive(5)}>
+              <MusicPanelButton onClick={onTabClick(4)} active={isTabActive(4)}>
                 Friends
               </MusicPanelButton>
             </MusicPanelNav>
-            <MusicSearchInput />
+            <SearchInputContainer>
+              <SearchInput />
+            </SearchInputContainer>
           </NavAndSearchContainer>
           <SimpleBar style={{ maxHeight: 405 }}>
             <TracksList>
-              <Track isSelected={isActive(0)} isPlaying />
-              <Track isSelected={isActive(1)} isPlaying={false} />
-              <Track isSelected={isActive(2)} isPlaying={false} />
-              <Track isSelected={isActive(3)} isPlaying={false} />
-              <Track isSelected={isActive(4)} isPlaying={false} />
-              <Track isSelected={isActive(5)} isPlaying={false} />
-              <Track isSelected={isActive(6)} isPlaying={false} />
-              <Track isSelected={isActive(7)} isPlaying={false} />
+              {tracks.map(track => (
+                <Track
+                  key={track.id}
+                  isSelected={activeTrack.id === track.id}
+                  isPlaying={activeTrack.id === track.id && activeTrack.isPlaying}
+                />
+              ))}
             </TracksList>
           </SimpleBar>
         </LeftSection>
@@ -118,13 +75,17 @@ const Music: React.FC = () => {
             Nick And The Niners
           </Typography>
           <SimpleBar style={{ maxHeight: 405 }}>
-            <Lyrics>{lyrics}</Lyrics>
+            <Lyrics>{tracks[activeTrack.id].lyrics}</Lyrics>
           </SimpleBar>
         </FlexCol>
       </Container>
     </MusicContainer>
   )
 }
+
+const SearchInputContainer = styled.div`
+  margin: 1.5rem 0 0.5rem;
+`
 
 const Lyrics = styled.p`
   margin-top: -1rem;

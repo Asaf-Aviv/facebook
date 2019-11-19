@@ -4,7 +4,7 @@ import { ActionsPanel } from 'components'
 import { Avatar, Paper } from 'shared'
 
 const Posts: React.FC = () => {
-  const [posts, setPosts] = useState([
+  const [posts] = useState([
     {
       userId: 1,
       id: 1,
