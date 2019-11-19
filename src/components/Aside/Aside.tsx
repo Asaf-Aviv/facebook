@@ -45,8 +45,7 @@ const Aside: React.FC = () => (
           <h6>Upcoming Events</h6>
           <StyledLink>All</StyledLink>
         </FlexSpaceBetween>
-        <img
-          style={{ maxWidth: '100%' }}
+        <Img
           src={GoogleEvent}
           alt="google headquarters"
         />
@@ -121,6 +120,10 @@ const Aside: React.FC = () => (
     </Paper>
   </AsideContainer>
 )
+
+const Img = styled.img`
+  max-width: 100%;
+`
 
 const Section = styled.section`
   &:not(:first-of-type) {

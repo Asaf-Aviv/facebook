@@ -18,7 +18,7 @@ const Settings: React.FC = () => {
       <PopOverHeader>
         <Typography as="h6" color="white" mb="0.25rem" weight={500}>Settings</Typography>
       </PopOverHeader>
-      <div style={{ color: 'white' }}>
+      <Div>
         <Option>
           <Typography as="span" weight={500}>Friend Requests</Typography>
           <Toggler
@@ -47,10 +47,14 @@ const Settings: React.FC = () => {
             onChange={handleToggleChange(setMessages)}
           />
         </Option>
-      </div>
+      </Div>
     </ToolBarSearchContainer>
   )
 }
+
+const Div = styled.div`
+  color: white;
+`
 
 const ToolBarSearchContainer = styled.div`
   width: 300px;

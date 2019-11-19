@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 
 export const trackTimeListened = (duration: number): JSX.Element => {
   const minutes = (duration / 60).toFixed(0)
@@ -7,14 +8,19 @@ export const trackTimeListened = (duration: number): JSX.Element => {
     .split('')
 
   return (
-    <div style={{ textAlign: 'right' }}>
-      <span style={{ paddingRight: 2 }}>{minutes}</span>
+    <div>
+      <span>{minutes}</span>
       :
-      <span style={{ display: 'inline-block', width: 12 }}>{seconds[0]}</span>
-      <span style={{ display: 'inline-block', width: 12 }}>{seconds[1]}</span>
+      <StyledSpan>{seconds[0]}</StyledSpan>
+      <StyledSpan>{seconds[1]}</StyledSpan>
     </div>
   )
 }
+
+const StyledSpan = styled.span`
+  display: inline-block;
+  width: 12px;
+`
 
 export const calculatePercentageTrackListened = (
   currentDuration: number,
