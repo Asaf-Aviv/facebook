@@ -2,8 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Avatar, Typography, PopOverHeader } from 'shared'
 
-const Notifications: React.FC = () => (
-  <NotificationsContainer>
+const Notifications: React.FC<{ className?: string }> = ({ className }) => (
+  <NotificationsContainer className={className}>
     <PopOverHeader>
       <Typography as="h6" color="white" weight={500}>Notifications</Typography>
       <Typography as="span" color="lightBlue" size="sm" weight={500}>Settings</Typography>
@@ -40,6 +40,7 @@ const NotificationsContainer = styled.div`
   flex-direction: column;
   width: 400px;
   height: 400px;
+  background: #2D4373;
 `
 
 const NotificationsList = styled.ul`

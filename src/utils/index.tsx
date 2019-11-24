@@ -8,12 +8,12 @@ export const trackTimeListened = (duration: number): JSX.Element => {
     .split('')
 
   return (
-    <div>
+    <>
       <span>{minutes}</span>
       :
       <StyledSpan>{seconds[0]}</StyledSpan>
       <StyledSpan>{seconds[1]}</StyledSpan>
-    </div>
+    </>
   )
 }
 

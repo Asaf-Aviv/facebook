@@ -1,3 +1,3 @@
-import Facebook from './Facebook'
+import Facebook, { WindowWidthContext } from './Facebook'
 
-export default Facebook
+export { Facebook as default, WindowWidthContext }

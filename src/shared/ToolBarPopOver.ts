@@ -4,7 +4,7 @@ const ToolBarPopOver = styled.div<{ activeTab: number }>`
   ${(props) => {
     const { activeTab, theme } = props
     const { borderRadius, colors } = theme
-    const translateX = activeTab * 70
+    const translateX = activeTab * (window.innerWidth >= 1200 ? 70 : 50)
 
     return css`
       position: absolute;
