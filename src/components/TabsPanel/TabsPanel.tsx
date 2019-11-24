@@ -27,20 +27,26 @@ const StyledUl = styled.ul`
 
 const TabsContainer = styled.nav`
   flex: 1;
-  border-bottom: 2px solid #EBEBEB;
-  margin-bottom: 2rem;
+  margin: 1rem 0 2rem;
+  @media screen and (min-width: 700px) {
+    border-bottom: 2px solid #EBEBEB;
+  }
+  @media screen and (min-width: 1200px) {
+    margin: 0 0 2rem 0rem;
+  }
 `
 
 const Tab = styled.button<{ active: boolean }>`
   position: relative;
   cursor: pointer;
-  font-size: 18px;
   background: transparent;
   border: none;
-  padding-bottom: 1rem;
-  margin-right: 2rem;
   outline: none;
   opacity: 0.5;
+  padding-bottom: 0.5rem;
+  font-size: 16px;
+  flex-basis: 100%;
+  margin-bottom: 1rem;
   &::after {
     content: '';
     position: absolute;
@@ -60,6 +66,22 @@ const Tab = styled.button<{ active: boolean }>`
       background: ${theme.colors.bg.primary};
     }
   `}
+  @media screen and (min-width: 400px) {
+    flex-basis: 50%;
+  }
+  @media screen and (min-width: 550px) {
+    flex-basis: 33%;
+  }
+  @media screen and (min-width: 700px) {
+    padding-bottom: 1rem;
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-right: 1rem;
+    flex-basis: initial;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-right: 2rem;
+  }
 `
 
 export default TabsPanel

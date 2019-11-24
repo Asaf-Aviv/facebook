@@ -108,10 +108,14 @@ const Img = styled.img`
   cursor: pointer;
   max-width: 100%;
   border-radius: ${props => props.theme.borderRadius};
+  box-shadow: 1px 3px 5px rgba(109, 109, 109, 0.4);
 `
 
 const StyledPaper = styled(Paper)`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  @media screen and (min-width: 900px) {
+    margin-bottom: 2rem;
+  }
 `
 
 const PostHeader = styled.header`

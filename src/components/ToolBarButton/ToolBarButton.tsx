@@ -27,8 +27,12 @@ const ToolBarButton: React.FC<ToolBarButton> = ({
 
 const ButtonContainer = styled.div`
   position: relative;
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+    width: 70px;
+  }
 `
 
 const StyledToolBarButton = styled(IconButton)<{ active: boolean }>`
@@ -52,12 +56,16 @@ const StyledToolBarButton = styled(IconButton)<{ active: boolean }>`
 
 const StyledBadge = styled(Badge)`
   position: absolute;
-  bottom: 16px;
-  right: 10px;
+  bottom: 10px;
+  right: 2px;
   height: 18px;
   width: 18px;
   font-size: 12px;
   padding-bottom: 0;
+  @media screen and (min-width: 1200px) {
+    bottom: 16px;
+    right: 10px;
+  }
 `
 
 export default ToolBarButton

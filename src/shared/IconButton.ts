@@ -2,8 +2,12 @@ import styled from 'styled-components'
 import BaseButton from './BaseButton'
 
 const IconButton = styled(BaseButton)`
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+    width: 70px;
+  }
   g {
     transition: opacity 150ms ease-out;
   }

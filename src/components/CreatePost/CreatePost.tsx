@@ -29,7 +29,10 @@ const StyledPaper = styled(Paper)`
   display: flex;
   align-items: flex-start;
   min-height: 80px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  @media screen and (min-width: 900px) {
+    margin-bottom: 2rem;
+  }
 `
 
 const Input = styled(TextareaAutosize)`
@@ -37,7 +40,7 @@ const Input = styled(TextareaAutosize)`
   margin-left: 1rem;
   border: none;
   outline: none;
-  padding: 1rem 1rem 1rem 0;
+  padding: 1rem 0rem;
   line-height: 1.5;
   min-height: 50px;
   align-self: center;

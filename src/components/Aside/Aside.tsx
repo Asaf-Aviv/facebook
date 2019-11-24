@@ -5,8 +5,8 @@ import { ReactComponent as PlusIcon } from 'assets/icons/plus.svg'
 import { ReactComponent as DotsIcon } from 'assets/icons/dots.svg'
 import GoogleEvent from 'assets/images/google-event.jpg'
 
-const Aside: React.FC = () => (
-  <AsideContainer>
+const Aside: React.FC<{ className?: string }> = ({ className }) => (
+  <AsideContainer className={className}>
     <Paper>
       <Section>
         <h6>Stories</h6>
@@ -132,9 +132,13 @@ const Section = styled.section`
 `
 
 const AsideContainer = styled.aside`
-  max-width: 400px;
   flex: 1;
-  margin-left: 2rem;
+  margin-left: 1rem;
+  min-width: 300px;
+  max-width: 400px;
+  @media screen and (min-width: 900px) {
+    margin-left: 2rem;
+  }
 `
 
 const UserAvatarWrapper = styled.div`

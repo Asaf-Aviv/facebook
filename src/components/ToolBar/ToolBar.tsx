@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as BellIcon } from 'assets/icons/bell.svg'
 import { ReactComponent as MusicIcon } from 'assets/icons/music.svg'
@@ -18,12 +18,13 @@ import {
   ToolBarPopOver,
   Avatar,
 } from 'shared'
-import useOnOutsideClick from 'hooks/useOnOutsideClick'
+import { useOnOutsideClick } from 'hooks'
 import {
   trackTimeListened,
   calculatePercentageTrackListened,
 } from 'utils/index'
 import initialTracks from 'data/tracks'
+import { WindowWidthContext } from 'components/Facebook'
 
 
 const ToolBar: React.FC = () => {
@@ -37,6 +38,8 @@ const ToolBar: React.FC = () => {
     duration: 191,
     currentDuration: 0,
   })
+
+  const windowWidth = useContext(WindowWidthContext)
 
   const buttonsWrapperRef = useRef<HTMLDivElement>(null)
   const volumeContainerRef = useRef<HTMLDivElement>(null)
@@ -107,55 +110,60 @@ const ToolBar: React.FC = () => {
 
   return (
     <ToolBarContainer>
-      <StyledFlexRow>
-        <Avatar
-          src="https://randomuser.me/api/portraits/men/22.jpg"
-          alt="Jhon Doe"
-        />
-        <div style={{ marginLeft: '0.5rem' }}>
-          <Typography as="h6" mb="0.25rem" size="normal">
-            Jhon Doe
-          </Typography>
-          <Typography as="span" size="xs" opacity={0.5}>
-            That&apos;s me ayyyy
-          </Typography>
-        </div>
-      </StyledFlexRow>
+      {windowWidth >= 1280 && (
+        <StyledFlexRow>
+          <Avatar
+            src="https://randomuser.me/api/portraits/men/22.jpg"
+            alt="Jhon Doe"
+          />
+          <div style={{ marginLeft: '0.5rem' }}>
+            <Typography as="h6" mb="0.25rem" size="normal">
+              Jhon Doe
+            </Typography>
+            <Typography as="span" size="xs" opacity={0.5}>
+              That&apos;s me ayyyy
+            </Typography>
+          </div>
+        </StyledFlexRow>
+      )}
       <MiddleSection>
-        <ButtonsContainer ref={buttonsWrapperRef}>
-          <ToolBarButton
-            onClick={handleTabClick(0)}
-            active={isActive(0)}
-            icon={BellIcon}
-            badge={7}
-          />
-          <ToolBarButton
-            onClick={handleTabClick(1)}
-            active={isActive(1)}
-            icon={MusicIcon}
-          />
-          <ToolBarButton
-            onClick={handleTabClick(2)}
-            active={isActive(2)}
-            icon={SearchIcon}
-          />
-          <ToolBarButton
-            onClick={handleTabClick(3)}
-            active={isActive(3)}
-            icon={SettingsIcon}
-          />
-          {activeTabIndex !== null && (
-            <ToolBarPopOver activeTab={activeTabIndex}>
-              {activeTabIndex === 0 && <Notifications />}
-              {activeTabIndex === 1 && (
-                <Music tracks={tracks} activeTrack={activeTrack} />
-              )}
-              {activeTabIndex === 2 && <ToolBarSearch />}
-              {activeTabIndex === 3 && <Settings />}
-            </ToolBarPopOver>
-          )}
-        </ButtonsContainer>
-        <FlexRow>
+        {windowWidth >= 786 && (
+
+          <ButtonsContainer ref={buttonsWrapperRef}>
+            <ToolBarButton
+              onClick={handleTabClick(0)}
+              active={isActive(0)}
+              icon={BellIcon}
+              badge={7}
+            />
+            <ToolBarButton
+              onClick={handleTabClick(1)}
+              active={isActive(1)}
+              icon={MusicIcon}
+            />
+            <ToolBarButton
+              onClick={handleTabClick(2)}
+              active={isActive(2)}
+              icon={SearchIcon}
+            />
+            <ToolBarButton
+              onClick={handleTabClick(3)}
+              active={isActive(3)}
+              icon={SettingsIcon}
+            />
+            {activeTabIndex !== null && (
+              <ToolBarPopOver activeTab={activeTabIndex}>
+                {activeTabIndex === 0 && <Notifications />}
+                {activeTabIndex === 1 && (
+                  <Music tracks={tracks} activeTrack={activeTrack} />
+                )}
+                {activeTabIndex === 2 && <ToolBarSearch />}
+                {activeTabIndex === 3 && <Settings />}
+              </ToolBarPopOver>
+            )}
+          </ButtonsContainer>
+        )}
+        <MusicPlayerContainer>
           <IconButton>
             <PreviousIcon />
           </IconButton>
@@ -180,7 +188,6 @@ const ToolBar: React.FC = () => {
                   as="span"
                   display="block"
                   size="xs"
-                  mb="0.5rem"
                   opacity={0.5}
                 >
                   Twenty One Pilots
@@ -214,11 +221,15 @@ const ToolBar: React.FC = () => {
               </VolumeSliderContainer>
             )}
           </VolumeContainer>
-        </FlexRow>
+        </MusicPlayerContainer>
       </MiddleSection>
     </ToolBarContainer>
   )
 }
+
+const MusicPlayerContainer = styled(FlexRow)`
+  height: 100%;
+`
 
 const TrackWrapper = styled(FlexRow)`
   color: #FFF;
@@ -276,7 +287,7 @@ const StyledSlider = styled(Input)`
 const VolumeSliderContainer = styled.div<{ volume: string }>`
   position: absolute;
   height: 120px;
-  width: 70px;
+  width: 50px;
   top: -120px;
   display: flex;
   justify-content: center;
@@ -300,12 +311,18 @@ const VolumeSliderContainer = styled.div<{ volume: string }>`
     height: ${props => props.volume}px;
     background: #fff;
   }
+  @media screen and (min-width: 1200px) {
+    width: 70px;
+  }
 `
 
 const VolumeContainer = styled.div`
   position: relative;
-  height: 70px;
-  width: 70px;
+  height: 100%;
+  width: 50px;
+  @media screen and (min-width: 1200px) {
+    width: 70px;
+  }
 `
 
 const CurrentTrackContainer = styled(FlexCol)<{ duration: string }>`
@@ -319,7 +336,7 @@ const CurrentTrackContainer = styled(FlexCol)<{ duration: string }>`
     content: '';
     position: absolute;
     height: 4px;
-    bottom: 3px;
+    bottom: 5px;
     z-index: 5;
   }
   &::before {
@@ -330,6 +347,12 @@ const CurrentTrackContainer = styled(FlexCol)<{ duration: string }>`
     width: ${props => props.duration}%;
     background: #fff;
   }
+  @media screen and (min-width: 1200px) {
+    &::before,
+    &::after {
+      bottom: 10px;
+    }
+  }
 `
 
 const ButtonsContainer = styled.div`
@@ -338,13 +361,16 @@ const ButtonsContainer = styled.div`
 `
 
 const ToolBarContainer = styled.div`
+  height: 50px;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70px;
   display: flex;
   background: #3c5a99f2;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+  }
 `
 
 export default ToolBar

@@ -70,7 +70,7 @@ const Music: React.FC<Music> = ({ tracks, activeTrack }) => {
           </SimpleBar>
         </LeftSection>
         <FlexCol>
-          <img src={SongImage} alt="nico and the niners" />
+          <img style={{ maxWidth: '100%' }} src={SongImage} alt="nico and the niners" />
           <Typography as="h6" color="white" mt="1.25rem" mb="0.5rem">
             Nick And The Niners
           </Typography>
@@ -115,10 +115,13 @@ const NavAndSearchContainer = styled.div`
 `
 
 const MusicContainer = styled.div`
-  width: 920px;
+  width: 700px;
   height: 600px;
   display: flex;
   flex-direction: column;
+  @media screen and (min-width: 1200px) {
+    width: 920px;
+  }
 `
 
 const MusicPanelButton = styled(BaseButton)<{ active: boolean }>`
@@ -133,6 +136,7 @@ const MusicPanelButton = styled(BaseButton)<{ active: boolean }>`
       padding: 0.45rem 1rem;
       font-size: ${sm};
       transition: 150ms ease-out;
+      font-size: 14px;
       &:not(:first-of-type) {
         margin-left: 0.5rem;
       }

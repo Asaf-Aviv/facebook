@@ -1,13 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ReactComponent as NewsIcon } from 'assets/icons/news.svg'
 import { ReactComponent as FacebookLogo } from 'assets/icons/facebook.svg'
-import { ReactComponent as MessagesIcon } from 'assets/icons/messages.svg'
-import { ReactComponent as UserIcon } from 'assets/icons/user.svg'
-import { ReactComponent as UsersIcon } from 'assets/icons/users.svg'
-import { ReactComponent as EventsIcon } from 'assets/icons/events.svg'
-import { ReactComponent as PagesIcon } from 'assets/icons/pages.svg'
-import { SideBarLink } from 'components'
+import { Nav } from 'components'
 
 const SideBar: React.FC = () => (
   <SideBarContainer>
@@ -15,16 +9,7 @@ const SideBar: React.FC = () => (
       <FacebookLogo />
     </StyledHeader>
     <h6>Menu</h6>
-    <nav>
-      <ul>
-        <SideBarLink to="/news" label="News" icon={NewsIcon} />
-        <SideBarLink to="/messages" label="Messages" icon={MessagesIcon} badge={9} />
-        <SideBarLink to="/friends" label="Friends" icon={UserIcon} />
-        <SideBarLink to="/communities" label="Communities" icon={UsersIcon} />
-        <SideBarLink to="/events" label="Events" icon={EventsIcon} />
-        <SideBarLink to="/pages" label="Pages" icon={PagesIcon} />
-      </ul>
-    </nav>
+    <Nav />
   </SideBarContainer>
 )
 
