@@ -26,7 +26,6 @@ import {
 import initialTracks from 'data/tracks'
 import { WindowWidthContext } from 'components/Facebook'
 
-
 const ToolBar: React.FC = () => {
   const [activeTabIndex, setActiveTabIndex] = useState<number | null>(null)
   const [isVolumeOpen, setIsVolumeOpen] = useState(false)
@@ -201,7 +200,7 @@ const ToolBar: React.FC = () => {
               type="range"
               min={0}
               max={100}
-              onChange={handleVolumeChange}
+              // onChange={handleVolumeChange}
             />
           </CurrentTrackContainer>
           <VolumeContainer ref={volumeContainerRef}>
@@ -238,7 +237,14 @@ const TrackWrapper = styled(FlexRow)`
 
 const MiddleSection = styled(FlexRow)`
   flex: 1;
-  justify-content: space-evenly;
+  display: flex;
+  justify-content: space-between;
+  /* act as space-evenly for unsupported browsers  */
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+  }
 `
 
 const StyledFlexRow = styled(FlexRow)`
@@ -255,24 +261,45 @@ const Input = styled.input`
   bottom: 35px;
   position: absolute;
   transform: rotate(-90deg);
-  -webkit-appearance: none;
-  ::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 5px;
-    border: none;
-    border-radius: 3px;
-    background: transparent;
-  }
-  ::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 13px;
-    width: 13px;
-    border-radius: 50%;
-    margin-top: -4px;
-  }
-  &:focus {
-    outline: none;
+  -webkit-appearance: none !important;
+  &[type="range"] {
+    ::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      width: 300px;
+      height: 5px;
+      border: none;
+      border-radius: 3px;
+      background: transparent;
+    }
+    ::-moz-range-track {
+      -webkit-appearance: none;
+      width: 300px;
+      height: 5px;
+      border: none;
+      border-radius: 3px;
+      background: transparent;
+    }
+    ::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 13px;
+      width: 13px;
+      border-radius: 50%;
+      margin-top: -4px;
+      background: transparent;
+    }
+    ::-moz-range-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 13px;
+      width: 13px;
+      border-radius: 50%;
+      margin-top: -4px;
+      background: transparent;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 `
 
@@ -367,7 +394,8 @@ const ToolBarContainer = styled.div`
   left: 0;
   right: 0;
   display: flex;
-  background: #3c5a99f2;
+  background: rgb(60, 90, 153);
+  background: rgba(60, 90, 153, 0.95);
   @media screen and (min-width: 1200px) {
     height: 70px;
   }

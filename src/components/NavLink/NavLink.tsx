@@ -53,7 +53,10 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   @media screen and (max-width: 869px) {
-    width: 2rem;
+    width: 1.5rem;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 1.5rem;
   }
 `
 

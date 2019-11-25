@@ -65,6 +65,7 @@ const StyledNav = styled.nav<{ isOpen?: boolean }>`
     right: 0;
     left: 0;
     height: 100vh;
+    z-index: 100;
     transform: translateX(-100%);
     ${props => props.isOpen && `
       transform: translateX(0);

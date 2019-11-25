@@ -133,7 +133,7 @@ const MusicPanelButton = styled(BaseButton)<{ active: boolean }>`
       background: ${active ? '#FFF' : 'transparent'};
       color: ${active ? 'inherit' : '#FFF'};
       border-radius: 25px;
-      padding: 0.45rem 1rem;
+      padding: 0.25rem 0.5rem;
       font-size: ${sm};
       transition: 150ms ease-out;
       font-size: 14px;
@@ -143,6 +143,9 @@ const MusicPanelButton = styled(BaseButton)<{ active: boolean }>`
       &:hover {
         background: #fff;
         color: inherit;
+      }
+      @media screen (min-width: 1200px) {
+        padding: 0.45rem 1rem;
       }
     `
   }};

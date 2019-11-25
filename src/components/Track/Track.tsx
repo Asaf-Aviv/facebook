@@ -18,7 +18,7 @@ const Track: React.FC<Track> = ({ isPlaying, isSelected }) => (
       <TrackTitle as="h6" color="white" mb="0.5rem">Nick And The Niners</TrackTitle>
       <Typography as="span" size="xs" color="white" opacity={0.5}>Twenty One Pilots</Typography>
     </TrackInfo>
-    <Typography size="lg" color="white" mx="1rem" opacity={0.5}>3:11</Typography>
+    <Typography color="white" opacity={0.5}>3:11</Typography>
     <FlexRow>
       <TrackButton>
         {isPlaying ? <PauseIcon /> : <PlayIcon />}
@@ -37,19 +37,12 @@ const TrackTitle = styled(Typography)`
 `
 
 const TrackButton = styled(IconButton)`
-  height: auto;
-  width: auto;
-  &:hover {
-    background: initial;
-  }
-  @media screen and (max-width: 1279px) {
-    height: 50px;
-    width: 50px;
-  }
+  height: 50px !important;
+  width: 50px !important;
 `
 
 const TrackInfo = styled.div`
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   flex: 1;
 `
 
@@ -62,7 +55,7 @@ const TrackContainer = styled.li<{ isSelected: boolean }>`
       align-items: center;
       border-top-right-radius: ${borderRadius};
       border-bottom-right-radius: ${borderRadius};
-      padding: 1rem;
+      padding: 1rem 0.5rem 1rem 1rem;
 
       &:hover {
         background: rgba(0, 0, 0, 0.1);
