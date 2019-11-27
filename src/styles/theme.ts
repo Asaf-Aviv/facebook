@@ -14,6 +14,11 @@ const theme: DefaultTheme = {
       white: '#FFF',
       lightBlue: '#A9C7FD',
     },
+    general: {
+      success: '#018601',
+      error: '#d60000',
+      default: '#cecece',
+    },
   },
   fontSize: {
     xs: '0.75rem',
@@ -25,6 +30,7 @@ const theme: DefaultTheme = {
     huge: '1.5rem',
   },
   shadows: [
+    '0 1px 0px 1px rgba(208, 208, 208, 0.4)',
     '0 3px 1px rgba(211, 216, 224, 0.4)',
   ],
 }
