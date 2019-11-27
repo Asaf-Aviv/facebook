@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect, useContext } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as BellIcon } from 'assets/icons/bell.svg'
 import { ReactComponent as MusicIcon } from 'assets/icons/music.svg'
@@ -24,7 +24,7 @@ import {
   calculatePercentageTrackListened,
 } from 'utils/index'
 import initialTracks from 'data/tracks'
-import { WindowWidthContext } from 'components/Facebook'
+import { WindowWidthContext } from 'components/WindowWidthProvider'
 
 const ToolBar: React.FC = () => {
   const [activeTabIndex, setActiveTabIndex] = useState<number | null>(null)
@@ -73,19 +73,13 @@ const ToolBar: React.FC = () => {
     tracks,
   ])
 
-  useOnOutsideClick(
-    buttonsWrapperRef,
-    useCallback(() => {
-      if (activeTabIndex !== null) setActiveTabIndex(null)
-    }, [activeTabIndex]),
-  )
+  useOnOutsideClick(buttonsWrapperRef, () => {
+    if (activeTabIndex !== null) setActiveTabIndex(null)
+  })
 
-  useOnOutsideClick(
-    volumeContainerRef,
-    useCallback(() => {
-      if (isVolumeOpen) setIsVolumeOpen(false)
-    }, [isVolumeOpen]),
-  )
+  useOnOutsideClick(volumeContainerRef, () => {
+    if (isVolumeOpen) setIsVolumeOpen(false)
+  })
 
   const handleTabClick = (tabIndex: number) => () => {
     const nextActiveTab = tabIndex === activeTabIndex ? null : tabIndex

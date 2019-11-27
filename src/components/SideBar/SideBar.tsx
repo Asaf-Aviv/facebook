@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ReactComponent as FacebookLogo } from 'assets/icons/facebook.svg'
-import { Nav } from 'components'
+import { Nav, Logo } from 'components'
 
 const SideBar: React.FC = () => (
   <SideBarContainer>
     <StyledHeader>
-      <FacebookLogo />
+      <Logo size={64} />
     </StyledHeader>
     <h6>Menu</h6>
     <Nav />

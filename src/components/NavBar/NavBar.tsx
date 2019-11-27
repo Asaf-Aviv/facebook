@@ -1,20 +1,18 @@
 import React, {
   useState,
   useContext,
-  useCallback,
   useRef,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from 'react'
 import styled, { css } from 'styled-components'
-import { ReactComponent as FacebookLogo } from 'assets/icons/facebook.svg'
 import { ReactComponent as MenuIcon } from 'assets/icons/menu.svg'
 import { ReactComponent as BellIcon } from 'assets/icons/bell.svg'
-import { Nav } from 'components'
-import Notifications from 'components/Notifications'
+import { Nav, Notifications, Logo } from 'components'
 import { useOnOutsideClick } from 'hooks'
 import { BaseButton } from 'shared'
-import { WindowWidthContext } from '../Facebook'
+import { WindowWidthContext } from 'components/WindowWidthProvider'
 
 const toggleState = (
   stateUpdater: Dispatch<SetStateAction<boolean>>,
@@ -26,13 +24,19 @@ const NavBar: React.FC = () => {
   const windowWidth = useContext(WindowWidthContext)
   const notificationsContainer = useRef<HTMLDivElement>(null)
 
-  useOnOutsideClick(notificationsContainer, useCallback(() => {
+  useOnOutsideClick(notificationsContainer, () => {
     if (isNotificationsOpen) toggleState(setIsNotificationsOpen)()
-  }, [isNotificationsOpen]))
+  })
+
+  useEffect(() => {
+    if (isOpen && windowWidth >= 870) {
+      setIsOpen(false)
+    }
+  }, [windowWidth, isOpen])
 
   return (
     <NavBarContainer>
-      <FacebookLogo width={36} height={36} style={{ flexShrink: 0 }} />
+      <Logo size={36} />
       {windowWidth < 870 && (
         <>
           <NotificationsContainer ref={notificationsContainer}>

@@ -6,9 +6,10 @@ import { ReactComponent as UsersIcon } from 'assets/icons/users.svg'
 import { ReactComponent as EventsIcon } from 'assets/icons/events.svg'
 import { ReactComponent as PagesIcon } from 'assets/icons/pages.svg'
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg'
-import { NavLink } from 'components'
+import { NavLink, FakeLink } from 'components'
 import styled from 'styled-components'
-import { WindowWidthContext } from 'components/Facebook'
+import { WindowWidthContext } from 'components/WindowWidthProvider'
+import { useLockBodyScroll } from 'hooks'
 
 interface Nav {
   isOpen?: boolean
@@ -18,6 +19,7 @@ interface Nav {
 const Nav: React.FC<Nav> = ({ isOpen, setIsOpen }) => {
   const ulRef = useRef<HTMLUListElement>(null)
   const windowWidth = useContext(WindowWidthContext)
+  useLockBodyScroll(isOpen)
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (isOpen && setIsOpen && e.target !== ulRef.current) {
@@ -30,7 +32,9 @@ const Nav: React.FC<Nav> = ({ isOpen, setIsOpen }) => {
       <StyledUl ref={ulRef}>
         {windowWidth < 870 && (
           <LogoWrapper>
-            <FacebookIcon />
+            <FakeLink>
+              <FacebookIcon />
+            </FakeLink>
           </LogoWrapper>
         )}
         <StyledNavLink to="/news" label="News" icon={NewsIcon} />

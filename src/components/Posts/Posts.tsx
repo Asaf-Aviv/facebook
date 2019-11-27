@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ActionsPanel } from 'components'
+import { ActionsPanel, FakeLink } from 'components'
 import { Avatar, Paper } from 'shared'
 
 const Posts: React.FC = () => {
@@ -47,7 +47,9 @@ const Posts: React.FC = () => {
               alt="Jhon Doe"
             />
             <PostInfo>
-              <UserName>Jhon Doe</UserName>
+              <FakeLink>
+                <UserName>Jhon Doe</UserName>
+              </FakeLink>
               <Date>4:22 PM, yesterday</Date>
             </PostInfo>
           </PostHeader>

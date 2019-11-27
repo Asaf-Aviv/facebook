@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseButton, Avatar, Paper } from 'shared'
+import { BaseButton, Paper } from 'shared'
 import { ReactComponent as PlusIcon } from 'assets/icons/plus.svg'
-import { ReactComponent as DotsIcon } from 'assets/icons/dots.svg'
 import GoogleEvent from 'assets/images/google-event.jpg'
+import { FakeLink, StoryLink, FriendRequest } from 'components'
 
 const Aside: React.FC<{ className?: string }> = ({ className }) => (
   <AsideContainer className={className}>
@@ -14,107 +14,43 @@ const Aside: React.FC<{ className?: string }> = ({ className }) => (
           <AddStoryButton>
             <PlusIcon />
           </AddStoryButton>
-          <div>
-            <UserAvatarWrapper>
-              <Avatar
-                src="https://randomuser.me/api/portraits/women/22.jpg"
-                alt="women"
-              />
-            </UserAvatarWrapper>
-          </div>
-          <div>
-            <UserAvatarWrapper>
-              <Avatar
-                src="https://randomuser.me/api/portraits/women/22.jpg"
-                alt="women"
-              />
-            </UserAvatarWrapper>
-          </div>
-          <div>
-            <UserAvatarWrapper>
-              <Avatar
-                src="https://randomuser.me/api/portraits/women/22.jpg"
-                alt="women"
-              />
-            </UserAvatarWrapper>
-          </div>
+          <StoryLink />
+          <StoryLink />
+          <StoryLink />
         </FlexSpaceBetween>
       </Section>
       <Section>
         <FlexSpaceBetween>
           <h6>Upcoming Events</h6>
-          <StyledLink>All</StyledLink>
+          <FakeLink>
+            <AllLink>All</AllLink>
+          </FakeLink>
         </FlexSpaceBetween>
         <Img
           src={GoogleEvent}
           alt="google headquarters"
         />
         <EventFooter>
-          <EventTitle>Google open meetup</EventTitle>
+          <FakeLink>
+            <EventTitle>Google open meetup</EventTitle>
+          </FakeLink>
           <LightText>3:10 PM, Today</LightText>
         </EventFooter>
       </Section>
       <Section>
         <FlexSpaceBetween>
           <h6>Friend Requests</h6>
-          <StyledLink>All</StyledLink>
+          <FakeLink>
+            <AllLink>All</AllLink>
+          </FakeLink>
         </FlexSpaceBetween>
         <ul>
-          <StyledLi>
-            <Avatar
-              src="https://randomuser.me/api/portraits/women/22.jpg"
-              alt="women"
-            />
-            <FriendRequestUserInfo>
-              <UserName>Jane Clark</UserName>
-              <LightText>Google</LightText>
-            </FriendRequestUserInfo>
-            <StyledDotsIcon />
-          </StyledLi>
-          <StyledLi>
-            <Avatar
-              src="https://randomuser.me/api/portraits/women/22.jpg"
-              alt="women"
-            />
-            <FriendRequestUserInfo>
-              <UserName>Jane Clark</UserName>
-              <LightText>Google</LightText>
-            </FriendRequestUserInfo>
-            <StyledDotsIcon />
-          </StyledLi>
-          <StyledLi>
-            <Avatar
-              src="https://randomuser.me/api/portraits/women/22.jpg"
-              alt="women"
-            />
-            <FriendRequestUserInfo>
-              <UserName>Jane Clark</UserName>
-              <LightText>Google</LightText>
-            </FriendRequestUserInfo>
-            <StyledDotsIcon />
-          </StyledLi>
-          <StyledLi>
-            <Avatar
-              src="https://randomuser.me/api/portraits/women/22.jpg"
-              alt="women"
-            />
-            <FriendRequestUserInfo>
-              <UserName>Jane Clark</UserName>
-              <LightText>Google</LightText>
-            </FriendRequestUserInfo>
-            <StyledDotsIcon />
-          </StyledLi>
-          <StyledLi>
-            <Avatar
-              src="https://randomuser.me/api/portraits/women/22.jpg"
-              alt="women"
-            />
-            <FriendRequestUserInfo>
-              <UserName>Jane Clark</UserName>
-              <LightText>Google</LightText>
-            </FriendRequestUserInfo>
-            <StyledDotsIcon />
-          </StyledLi>
+          <FriendRequest />
+          <FriendRequest />
+          <FriendRequest />
+          <FriendRequest />
+          <FriendRequest />
+          <FriendRequest />
         </ul>
       </Section>
     </Paper>
@@ -141,17 +77,6 @@ const AsideContainer = styled.aside`
   }
 `
 
-const UserAvatarWrapper = styled.div`
-  cursor: pointer;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid ${props => props.theme.colors.bg.secondary};
-`
-
 const AddStoryButton = styled(BaseButton)`
   height: 60px;
   width: 60px;
@@ -168,8 +93,7 @@ const FlexSpaceBetween = styled.div`
   }
 `
 
-const StyledLink = styled.span`
-  cursor: pointer;
+const AllLink = styled.span`
   color: ${props => props.theme.colors.bg.secondary};
   &:hover {
     text-decoration: underline;
@@ -187,38 +111,9 @@ const EventTitle = styled.span`
   margin-bottom: 0.5rem;
 `
 
-const StyledLi = styled.li`
-  display: flex;
-  align-items: center;
-  &:not(:first-of-type) {
-    margin-top: 1rem;
-  }
-`
-
-const FriendRequestUserInfo = styled.div`
-  margin-left: 1rem;
-  flex: 1;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`
-
-const UserName = styled.span`
-  cursor: pointer;
-  display: block;
-  font-weight: 600;
-`
-
 const LightText = styled.span`
   font-size: 13px;
   opacity: 0.5;
-`
-
-const StyledDotsIcon = styled(DotsIcon)`
-  width: 20px;
-  cursor: pointer;
 `
 
 export default Aside

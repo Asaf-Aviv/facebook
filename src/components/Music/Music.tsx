@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Typography, BaseButton, PopOverHeader, FlexCol } from 'shared'
 import SongImage from 'assets/images/nico.png'
 import SimpleBar from 'simplebar-react'
-import { Track, SearchInput } from 'components'
+import { Track, SearchInput, FakeLink } from 'components'
 import { Track as ITrack } from 'data/tracks'
 
 interface ActiveTrack {
@@ -18,10 +18,31 @@ interface Music {
   tracks: ITrack[]
 }
 
+const musicTabs = ['Daily playlist', 'My music', 'Radio', 'Playlists', 'Friends']
+
 const Music: React.FC<Music> = ({ tracks, activeTrack }) => {
-  const [activeTabIndex, setActiveTabIndex] = useState(0)
-  const onTabClick = (tabIndex: number) => () => setActiveTabIndex(tabIndex)
-  const isTabActive = (tabIndex: number) => tabIndex === activeTabIndex
+  const [activeTabName, setActiveTabName] = useState(musicTabs[0])
+
+  const onTabClick = (tabName: string) => () => setActiveTabName(tabName)
+  const isTabActive = (tabName: string) => tabName === activeTabName
+
+  const renderMusicTab = (tabName: string) => (
+    <MusicPanelButton
+      key={tabName}
+      onClick={onTabClick(tabName)}
+      active={isTabActive(tabName)}
+    >
+      {tabName}
+    </MusicPanelButton>
+  )
+
+  const renderTrack = ({ id }: ITrack) => (
+    <Track
+      key={id}
+      isSelected={activeTrack.id === id}
+      isPlaying={activeTrack.id === id && activeTrack.isPlaying}
+    />
+  )
 
   return (
     <MusicContainer>
@@ -29,29 +50,17 @@ const Music: React.FC<Music> = ({ tracks, activeTrack }) => {
         <Typography as="h6" color="white" weight={500}>
           Music
         </Typography>
-        <Typography as="span" color="lightBlue" size="sm" weight={500}>
-          Go to music page
-        </Typography>
+        <FakeLink>
+          <Typography as="span" color="lightBlue" size="sm" weight={500}>
+            Go to music page
+          </Typography>
+        </FakeLink>
       </PopOverHeader>
       <Container>
         <LeftSection>
           <NavAndSearchContainer>
             <MusicPanelNav>
-              <MusicPanelButton onClick={onTabClick(0)} active={isTabActive(0)}>
-                Daily playlist
-              </MusicPanelButton>
-              <MusicPanelButton onClick={onTabClick(1)} active={isTabActive(1)}>
-                My music
-              </MusicPanelButton>
-              <MusicPanelButton onClick={onTabClick(2)} active={isTabActive(2)}>
-                Radio
-              </MusicPanelButton>
-              <MusicPanelButton onClick={onTabClick(3)} active={isTabActive(3)}>
-                Playlists
-              </MusicPanelButton>
-              <MusicPanelButton onClick={onTabClick(4)} active={isTabActive(4)}>
-                Friends
-              </MusicPanelButton>
+              {musicTabs.map(renderMusicTab)}
             </MusicPanelNav>
             <SearchInputContainer>
               <SearchInput />
@@ -59,13 +68,7 @@ const Music: React.FC<Music> = ({ tracks, activeTrack }) => {
           </NavAndSearchContainer>
           <SimpleBar style={{ maxHeight: 405 }}>
             <TracksList>
-              {tracks.map(track => (
-                <Track
-                  key={track.id}
-                  isSelected={activeTrack.id === track.id}
-                  isPlaying={activeTrack.id === track.id && activeTrack.isPlaying}
-                />
-              ))}
+              {tracks.map(renderTrack)}
             </TracksList>
           </SimpleBar>
         </LeftSection>

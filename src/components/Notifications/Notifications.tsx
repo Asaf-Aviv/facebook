@@ -1,12 +1,15 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Avatar, Typography, PopOverHeader } from 'shared'
+import { FakeLink } from 'components'
 
 const Notifications: React.FC<{ className?: string }> = ({ className }) => (
   <NotificationsContainer className={className}>
     <PopOverHeader>
       <Typography as="h6" color="white" weight={500}>Notifications</Typography>
-      <Typography as="span" color="lightBlue" size="sm" weight={500}>Settings</Typography>
+      <FakeLink>
+        <Typography as="span" color="lightBlue" size="sm" weight={500}>Settings</Typography>
+      </FakeLink>
     </PopOverHeader>
     <NotificationsList>
       {[...Array(4)].map((_, i) => (
