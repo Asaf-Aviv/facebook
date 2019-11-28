@@ -13,14 +13,14 @@ interface ActiveTrack {
   currentDuration: number
 }
 
-interface Music {
+interface Props {
   activeTrack: ActiveTrack
   tracks: ITrack[]
 }
 
 const musicTabs = ['Daily playlist', 'My music', 'Radio', 'Playlists', 'Friends']
 
-const Music: React.FC<Music> = ({ tracks, activeTrack }) => {
+const Music: React.FC<Props> = ({ tracks, activeTrack }) => {
   const [activeTabName, setActiveTabName] = useState(musicTabs[0])
 
   const onTabClick = (tabName: string) => () => setActiveTabName(tabName)

@@ -1,11 +1,11 @@
 import styled, { css, GeneralColor } from 'styled-components'
 import { BaseButton } from 'shared'
 
-interface Button {
+interface Props {
   variant?: GeneralColor
 }
 
-const Button = styled(BaseButton)<Button>`
+const Button = styled(BaseButton)<Props>`
   ${(props) => {
     const { variant = 'default', theme } = props
     const { borderRadius, colors, fontSize } = theme

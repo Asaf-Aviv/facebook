@@ -6,12 +6,12 @@ import { ReactComponent as PauseIcon } from 'assets/icons/pause.svg'
 import { ReactComponent as AddIcon } from 'assets/icons/plus.svg'
 import TrackImage from 'assets/images/nico-and-the-niners.png'
 
-interface Track {
+interface Props {
   isPlaying: boolean
   isSelected: boolean
 }
 
-const Track: React.FC<Track> = ({ isPlaying, isSelected }) => (
+const Track: React.FC<Props> = ({ isPlaying, isSelected }) => (
   <TrackContainer isSelected={isSelected}>
     <img src={TrackImage} alt="nico and the niners" />
     <TrackInfo>

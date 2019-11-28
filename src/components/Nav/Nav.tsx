@@ -11,12 +11,12 @@ import styled from 'styled-components'
 import { WindowWidthContext } from 'components/WindowWidthProvider'
 import { useLockBodyScroll } from 'hooks'
 
-interface Nav {
+interface Props {
   isOpen?: boolean
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Nav: React.FC<Nav> = ({ isOpen, setIsOpen }) => {
+const Nav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   const ulRef = useRef<HTMLUListElement>(null)
   const windowWidth = useContext(WindowWidthContext)
   useLockBodyScroll(isOpen)

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { NavLink as RouterNavLink } from 'react-router-dom'
 import { LabelLink, Badge } from 'shared'
 
-interface NavLink {
+interface Props {
   to: string
   label: string
   icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
@@ -11,7 +11,7 @@ interface NavLink {
   className?: string
 }
 
-const NavLink: React.FC<NavLink> = ({
+const NavLink: React.FC<Props> = ({
   to,
   label,
   icon: Icon,

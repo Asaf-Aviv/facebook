@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { IconButton, Badge } from 'shared'
 
-interface ToolBarButton {
+interface Props {
   active: boolean
   className?: string
   badge?: number
@@ -10,7 +10,7 @@ interface ToolBarButton {
   onClick: () => void
 }
 
-const ToolBarButton: React.FC<ToolBarButton> = ({
+const ToolBarButton: React.FC<Props> = ({
   active,
   className,
   badge,

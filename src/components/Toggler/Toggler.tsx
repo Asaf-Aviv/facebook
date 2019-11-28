@@ -1,12 +1,12 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 
-interface Toggler {
+interface Props {
   checked: boolean
   onChange: () => void
 }
 
-const Toggler: React.FC<Toggler> = ({ checked, onChange }) => {
+const Toggler: React.FC<Props> = ({ checked, onChange }) => {
   const checkboxRef = useRef<HTMLInputElement>(null)
 
   const forwardClick = () => {
