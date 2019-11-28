@@ -5,7 +5,11 @@ import { ReactComponent as DotsIcon } from 'assets/icons/dots.svg'
 import FakeLink from 'components/FakeLink'
 import { useOnOutsideClick } from 'hooks'
 
-const FriendRequest: React.FC = () => {
+interface Props {
+  onAction: () => void
+}
+
+const FriendRequest: React.FC<Props> = ({ onAction }) => {
   const [isActionPanelOpen, setIsActionPanelOpen] = useState(false)
 
   const actionsPanelRef = useRef(null)
@@ -36,9 +40,9 @@ const FriendRequest: React.FC = () => {
         </DotsButton>
         {isActionPanelOpen && (
           <FriendRequestActions ref={actionsPanelRef}>
-            <Button onClick={toggleActionPanel} variant="success">Accept</Button>
-            <Button onClick={toggleActionPanel} variant="error">Block</Button>
-            <Button onClick={toggleActionPanel}>Ignore</Button>
+            <Button onClick={onAction} variant="success">Accept</Button>
+            <Button onClick={onAction} variant="error">Block</Button>
+            <Button onClick={onAction}>Ignore</Button>
           </FriendRequestActions>
         )}
       </ActionsPanelContainer>

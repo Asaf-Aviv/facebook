@@ -1,61 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BaseButton, Paper } from 'shared'
 import { ReactComponent as PlusIcon } from 'assets/icons/plus.svg'
 import GoogleEvent from 'assets/images/google-event.jpg'
 import { FakeLink, StoryLink, FriendRequest } from 'components'
 
-const Aside: React.FC<{ className?: string }> = ({ className }) => (
-  <AsideContainer className={className}>
-    <Paper>
-      <Section>
-        <h6>Stories</h6>
-        <FlexSpaceBetween>
-          <AddStoryButton>
-            <PlusIcon />
-          </AddStoryButton>
-          <StoryLink />
-          <StoryLink />
-          <StoryLink />
-        </FlexSpaceBetween>
-      </Section>
-      <Section>
-        <FlexSpaceBetween>
-          <h6>Upcoming Events</h6>
-          <FakeLink>
-            <AllLink>All</AllLink>
-          </FakeLink>
-        </FlexSpaceBetween>
-        <Img
-          src={GoogleEvent}
-          alt="google headquarters"
-        />
-        <EventFooter>
-          <FakeLink>
-            <EventTitle>Google open meetup</EventTitle>
-          </FakeLink>
-          <LightText>3:10 PM, Today</LightText>
-        </EventFooter>
-      </Section>
-      <Section>
-        <FlexSpaceBetween>
-          <h6>Friend Requests</h6>
-          <FakeLink>
-            <AllLink>All</AllLink>
-          </FakeLink>
-        </FlexSpaceBetween>
-        <ul>
-          <FriendRequest />
-          <FriendRequest />
-          <FriendRequest />
-          <FriendRequest />
-          <FriendRequest />
-          <FriendRequest />
-        </ul>
-      </Section>
-    </Paper>
-  </AsideContainer>
-)
+const Aside: React.FC<{ className?: string }> = ({ className }) => {
+  const [friendRequests, setFriendRequests] = useState([0, 1, 2, 3, 4, 5, 6])
+
+  const handleFriendRequestAction = (requestId: number) => () => {
+    setFriendRequests(prevState => prevState.filter(id => id !== requestId))
+  }
+
+  return (
+    <AsideContainer className={className}>
+      <Paper>
+        <Section>
+          <h6>Stories</h6>
+          <FlexSpaceBetween>
+            <AddStoryButton>
+              <PlusIcon />
+            </AddStoryButton>
+            <StoryLink />
+            <StoryLink />
+            <StoryLink />
+          </FlexSpaceBetween>
+        </Section>
+        <Section>
+          <FlexSpaceBetween>
+            <h6>Upcoming Events</h6>
+            <FakeLink>
+              <AllLink>All</AllLink>
+            </FakeLink>
+          </FlexSpaceBetween>
+          <Img
+            src={GoogleEvent}
+            alt="google headquarters"
+          />
+          <EventFooter>
+            <FakeLink>
+              <EventTitle>Google open meetup</EventTitle>
+            </FakeLink>
+            <LightText>3:10 PM, Today</LightText>
+          </EventFooter>
+        </Section>
+        {friendRequests.length > 0 && (
+          <Section>
+            <FlexSpaceBetween>
+              <h6>Friend Requests</h6>
+              <FakeLink>
+                <AllLink>All</AllLink>
+              </FakeLink>
+            </FlexSpaceBetween>
+            <ul>
+              {friendRequests.map(id => (
+                <FriendRequest key={id} onAction={handleFriendRequestAction(id)} />
+              ))}
+            </ul>
+          </Section>
+        )}
+      </Paper>
+    </AsideContainer>
+  )
+}
 
 const Img = styled.img`
   max-width: 100%;
