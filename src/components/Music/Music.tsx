@@ -110,6 +110,7 @@ const Container = styled.div`
 `
 
 const LeftSection = styled(FlexCol)`
+  flex: 1;
   margin-right: 0.5rem;
 `
 
