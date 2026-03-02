@@ -17,7 +17,7 @@
     "react-ga": "^3.1.2",
     "react-hot-loader": "^4.12.16",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "5.0.1",
     "react-textarea-autosize": "^7.1.2",
     "simplebar-react": "^2.0.9",
     "styled-components": "^5.0.0-rc.1",
